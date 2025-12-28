@@ -1,0 +1,56 @@
+﻿
+---
+
+## 📄 `.gitignore` (chuẩn .NET + Visual Studio + Docker)
+
+```gitignore
+# =========================
+# .NET / Visual Studio
+# =========================
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# =========================
+# Build artifacts
+# =========================
+artifacts/
+TestResults/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Environment files
+# =========================
+appsettings.Development.json
+appsettings.Local.json
+.env
+
+# =========================
+# Docker
+# =========================
+docker-data/
+**/docker-compose.override.yml
+
+# =========================
+# NuGet
+# =========================
+.nuget/
+packages/
+
+# =========================
+# Coverage
+# =========================
+coverage/
