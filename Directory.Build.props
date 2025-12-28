@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <!-- C# / .NET settings -->
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- NuGet packages dùng chung -->
+  </ItemGroup>
+</Project>

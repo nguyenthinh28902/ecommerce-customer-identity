@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerIdentityService.Application\CustomerIdentityService.Application.csproj" />
+    <ProjectReference Include="..\CustomerIdentityService.Domain\CustomerIdentityService.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
