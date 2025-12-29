@@ -1,4 +1,4 @@
-namespace CustomerIdentityService.Domain.Tests
+namespace CustomerIdentityService.Core.Tests
 {
     public class UnitTest1
     {

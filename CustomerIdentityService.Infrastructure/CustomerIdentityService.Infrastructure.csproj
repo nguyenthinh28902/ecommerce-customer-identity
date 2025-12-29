@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CustomerIdentityService.Application\CustomerIdentityService.Application.csproj" />
-    <ProjectReference Include="..\CustomerIdentityService.Domain\CustomerIdentityService.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Persistence\" />
   </ItemGroup>
 
@@ -23,6 +18,10 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Oracle.EntityFrameworkCore" Version="8.23.26000" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerIdentityService.Core\CustomerIdentityService.Core.csproj" />
   </ItemGroup>
 
 </Project>

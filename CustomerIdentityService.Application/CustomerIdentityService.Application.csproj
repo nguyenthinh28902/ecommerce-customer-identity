@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CustomerIdentityService.Domain\CustomerIdentityService.Domain.csproj" />
+    <ProjectReference Include="..\CustomerIdentityService.Core\CustomerIdentityService.Core.csproj" />
+    <ProjectReference Include="..\CustomerIdentityService.Infrastructure\CustomerIdentityService.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
