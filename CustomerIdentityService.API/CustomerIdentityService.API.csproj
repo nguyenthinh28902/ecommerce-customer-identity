@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CustomerIdentityService.Application\CustomerIdentityService.Application.csproj" />
-    <ProjectReference Include="..\CustomerIdentityService.Infrastructure\CustomerIdentityService.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
