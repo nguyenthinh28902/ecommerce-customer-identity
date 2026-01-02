@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CustomerIdentityService.Infrastructure.Persistence.Entities;
+namespace CustomerIdentityService.Infrastructure;
 
 public partial class CustomerCredential
 {

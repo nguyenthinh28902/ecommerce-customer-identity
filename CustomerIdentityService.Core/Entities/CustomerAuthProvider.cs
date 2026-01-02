@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CustomerIdentityService.Infrastructure.Persistence.Entities;
+namespace CustomerIdentityService.Infrastructure;
 
-public partial class CustomerSession
+public partial class CustomerAuthProvider
 {
     public int Id { get; set; }
 
     public int CustomerId { get; set; }
 
-    public string RefreshToken { get; set; } = null!;
+    public string Provider { get; set; } = null!;
 
-    public DateTime ExpiresAt { get; set; }
+    public string ProviderUserId { get; set; } = null!;
 
     public DateTime? CreatedAt { get; set; }
 

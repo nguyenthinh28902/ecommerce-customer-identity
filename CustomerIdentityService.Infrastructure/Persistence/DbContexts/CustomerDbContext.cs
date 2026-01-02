@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CustomerIdentityService.Infrastructure.Persistence.Entities;
+using CustomerIdentityService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace CustomerIdentityService.Infrastructure.Persistence.DbContexts;

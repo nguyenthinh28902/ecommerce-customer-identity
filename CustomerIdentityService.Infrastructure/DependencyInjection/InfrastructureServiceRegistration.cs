@@ -16,7 +16,9 @@ namespace CustomerIdentityService.Infrastructure.DependencyInjection
         {
             var CustomerAppLocalstring = configuration.GetConnectionString("CustomerAppLocal") ?? string.Empty;
             services.AddDbContext<CustomerDbContext>(options =>
-                options.UseOracle(CustomerAppLocalstring,oracleOptions =>{oracleOptions.CommandTimeout(60);}));
+                options.UseOracle(CustomerAppLocalstring, oracleOptions => { oracleOptions.CommandTimeout(60); }));
+
+
 
             return services;
         }

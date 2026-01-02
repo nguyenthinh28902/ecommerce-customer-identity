@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\" />
+    <Folder Include="Persistence\DbContexts\" />
     <Folder Include="Persistence\" />
   </ItemGroup>
 

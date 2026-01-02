@@ -1,4 +1,6 @@
 ﻿using CustomerIdentityService.Application.DependencyInjection;
+using CustomerIdentityService.Core.Abstractions.Persistence;
+using CustomerIdentityService.Infrastructure.Repositories;
 
 namespace CustomerIdentityService.API.DependencyInjection
 {
@@ -9,6 +11,10 @@ namespace CustomerIdentityService.API.DependencyInjection
             IConfiguration configuration)
         {
             services.AddApplicationServices(configuration);
+            //add kiến trúc repo and UoW
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             return services;
         }
     }
