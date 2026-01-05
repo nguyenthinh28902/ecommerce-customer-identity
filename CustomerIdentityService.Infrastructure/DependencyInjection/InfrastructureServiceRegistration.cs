@@ -1,4 +1,6 @@
-﻿using CustomerIdentityService.Infrastructure.Persistence.DbContexts;
+﻿using CustomerIdentityService.Core.Abstractions.Persistence;
+using CustomerIdentityService.Infrastructure.Persistence.DbContexts;
+using CustomerIdentityService.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +19,9 @@ namespace CustomerIdentityService.Infrastructure.DependencyInjection
             var CustomerAppLocalstring = configuration.GetConnectionString("CustomerAppLocal") ?? string.Empty;
             services.AddDbContext<CustomerDbContext>(options =>
                 options.UseOracle(CustomerAppLocalstring, oracleOptions => { oracleOptions.CommandTimeout(60); }));
-
+            //add kiến trúc repo and UoW
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
             return services;

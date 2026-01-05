@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CustomerIdentityService.Core;
 using CustomerIdentityService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 

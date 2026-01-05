@@ -1,4 +1,5 @@
 ﻿using CustomerIdentityService.Core.Abstractions.Persistence;
+using CustomerIdentityService.Infrastructure.Persistence.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -12,8 +13,8 @@ namespace CustomerIdentityService.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private DbContext _context;
-        public Repository(DbContext _context)
+        private CustomerDbContext _context;
+        public Repository(CustomerDbContext _context)
         {
             this._context = _context;
         }
@@ -45,7 +46,7 @@ namespace CustomerIdentityService.Infrastructure.Repositories
         {
             _context.UpdateRange(entities);
         }
-        public async Task<T> GetById(object Id)
+        public async Task<T> FindAsync(object Id)
         {
             var entity = await _context.Set<T>().FindAsync(Id);
             if (entity == null) return null;

@@ -1,4 +1,9 @@
-﻿using CustomerIdentityService.Infrastructure.DependencyInjection;
+﻿using CustomerIdentityService.Application.Services.Authentication;
+using CustomerIdentityService.Application.Services.CustomerServices;
+using CustomerIdentityService.Core.Abstractions.Interfaces.Security;
+using CustomerIdentityService.Core.Interfaces.Security;
+using CustomerIdentityService.Core.Interfaces.Services;
+using CustomerIdentityService.Infrastructure.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -15,7 +20,11 @@ namespace CustomerIdentityService.Application.DependencyInjection
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddInfrastructureServices(configuration);
-
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<ICustomerservice, Customerservice>();
+            services.AddScoped<IGoogleAuthService, GoogleAuthService>();
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             return services;
         }

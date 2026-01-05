@@ -17,7 +17,7 @@ namespace CustomerIdentityService.Core.Abstractions.Persistence
         void RemoveRange(IEnumerable<T> entities);
         void Update(T entity);
         void UpdateRange(IEnumerable<T> entities);
-        Task<T> GetById(object Id);
+        Task<T> FindAsync(object Id);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
         Task<IEnumerable<T>> ToListAsync();
         Task<IEnumerable<T>> ToList(Expression<Func<T, bool>> predicate);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CustomerIdentityService.Infrastructure;
+namespace CustomerIdentityService.Core;
 
 public partial class CustomerAuthProvider
 {

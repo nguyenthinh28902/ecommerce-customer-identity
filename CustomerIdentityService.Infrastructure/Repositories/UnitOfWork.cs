@@ -1,4 +1,5 @@
 ﻿using CustomerIdentityService.Core.Abstractions.Persistence;
+using CustomerIdentityService.Infrastructure.Persistence.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;
@@ -11,9 +12,9 @@ namespace CustomerIdentityService.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext dbContext;
+        private readonly CustomerDbContext dbContext;
         private Dictionary<Type, object> _repositories;
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(CustomerDbContext context)
         {
             dbContext = context;
         }

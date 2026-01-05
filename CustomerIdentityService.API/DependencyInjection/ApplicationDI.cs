@@ -11,10 +11,8 @@ namespace CustomerIdentityService.API.DependencyInjection
             IConfiguration configuration)
         {
             services.AddApplicationServices(configuration);
-            //add kiến trúc repo and UoW
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            //automapper
+            services.AddAutoMapperServiceRegistration(configuration);
             return services;
         }
     }
