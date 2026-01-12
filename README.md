@@ -12,8 +12,6 @@ Responsibilities
 Architecture
 - Microservice
 - Clean Architecture
-- DDD (Lightweight)
-- CQRS
 
 Architecture flow:
 API -> Application -> Domain
@@ -42,7 +40,6 @@ Tech Stack
 - .NET 8 (LTS)
 - ASP.NET Core Web API
 - Entity Framework Core
-- MediatR (CQRS)
 - JWT Authentication
 - Docker
 
