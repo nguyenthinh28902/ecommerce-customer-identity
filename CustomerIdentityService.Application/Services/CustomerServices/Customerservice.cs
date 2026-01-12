@@ -3,6 +3,7 @@ using CustomerIdentityService.Core;
 using CustomerIdentityService.Core.Abstractions.Interfaces.Security;
 using CustomerIdentityService.Core.Abstractions.Persistence;
 using CustomerIdentityService.Core.Dtos.Customers;
+using CustomerIdentityService.Core.Dtos.Google;
 using CustomerIdentityService.Core.Interfaces.Services;
 using CustomerIdentityService.Core.Models;
 using System;
@@ -19,10 +20,11 @@ namespace CustomerIdentityService.Application.Services.CustomerServices
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ICurrentUserService _currentUserService;
-        public Customerservice(IUnitOfWork unitOfWork, IMapper mapper)
+        public Customerservice(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserService currentUserService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _currentUserService = currentUserService;
         }
 
        
@@ -48,5 +50,27 @@ namespace CustomerIdentityService.Application.Services.CustomerServices
 
             return Result<CustomerDto>.Success(newCustomerDto, "Thông tin khách hàng");
         }
+        public async Task<Result<CustomerAuthProvider>> CreateCustomerSingin(UserInfoSinginDto googleUser, string ProviderName)
+        {
+            var provider = await _unitOfWork.Repository<CustomerAuthProvider>().FirstOrDefaultAsync(p => p.Provider == ProviderName
+             && p.ProviderUserId == googleUser.ProviderUserId);
+
+            if (provider == null)
+            {
+                // 3. Nếu chưa có: Tạo mới Customer và tạo liên kết Provider
+                var newCustomer = _mapper.Map<Customer>(googleUser);
+                var newCustomerAuthProvider = new CustomerAuthProvider();
+                newCustomerAuthProvider.Provider = ProviderName;
+                newCustomerAuthProvider.ProviderUserId = googleUser.ProviderUserId;
+                newCustomerAuthProvider.CreatedAt = DateTime.Now;
+                newCustomer.CustomerAuthProviders.Add(newCustomerAuthProvider);
+
+                var result = await Registration(newCustomer);
+                if (result.IsSuccess == false) { throw new Exception("Xác thực Google thất bại"); }
+                provider = result.Data?.CustomerAuthProviders.FirstOrDefault();
+            }
+            return Result<CustomerAuthProvider>.Success(provider, "Đăng ký thành công");
+        }
+
     }
 }

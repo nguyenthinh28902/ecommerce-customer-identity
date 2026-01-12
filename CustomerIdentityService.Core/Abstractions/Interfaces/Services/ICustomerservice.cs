@@ -1,5 +1,6 @@
 ﻿using CustomerIdentityService.Core;
 using CustomerIdentityService.Core.Dtos.Customers;
+using CustomerIdentityService.Core.Dtos.Google;
 using CustomerIdentityService.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,6 @@ namespace CustomerIdentityService.Core.Interfaces.Services
     {
        Task<Result<Customer>> Registration(Customer customer);
         Task<Result<CustomerDto>> GetAuthenticatedCustomer();
+        Task<Result<CustomerAuthProvider>> CreateCustomerSingin(UserInfoSinginDto googleUser, string ProviderName);
     }
 }

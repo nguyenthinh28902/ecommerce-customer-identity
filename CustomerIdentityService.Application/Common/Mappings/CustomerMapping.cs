@@ -24,7 +24,7 @@ namespace CustomerIdentityService.Application.Common.Mappings
             CreateMap<Customer, CustomerDto>();
 
 
-            CreateMap<GoogleUserInfoDto, CustomerDto>()
+            CreateMap<UserInfoSinginDto, CustomerDto>()
             .ForMember(
                 dest => dest.Username,
                 opt => opt.MapFrom(src => src.Email)
@@ -41,6 +41,23 @@ namespace CustomerIdentityService.Application.Common.Mappings
                 dest => dest.Email,
                 opt => opt.MapFrom(src => src.Email)
             );
+            CreateMap<UserInfoSinginDto, Customer>()
+          .ForMember(
+              dest => dest.Username,
+              opt => opt.MapFrom(src => src.Email)
+          )
+          .ForMember(
+              dest => dest.DisplayName,
+              opt => opt.MapFrom(src => src.Name)
+          )
+          .ForMember(
+              dest => dest.AvatarUrl,
+              opt => opt.MapFrom(src => src.Picture)
+          )
+          .ForMember(
+              dest => dest.Email,
+              opt => opt.MapFrom(src => src.Email)
+          );
         }
     }
 }

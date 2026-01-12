@@ -18,7 +18,7 @@ namespace CustomerIdentityService.API.Controllers
         [Authorize]
         public async Task<IActionResult> GetCurrentCustomerInfo()
         {
-            var data = _customerservice.GetAuthenticatedCustomer();
+            var data = await _customerservice.GetAuthenticatedCustomer();
             return Ok(data);
         }
     }

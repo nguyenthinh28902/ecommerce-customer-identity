@@ -1,0 +1,151 @@
+﻿@{
+     Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Failed</title>
+    <style>
+        /* Đồng bộ nền gradient tím của template */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Container chính giống kích thước ảnh bạn gửi */
+        .login-card {
+            display: flex;
+            width: 800px;
+            height: 400px;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Bên trái: Màu hồng gradient */
+        .card-left {
+            flex: 1;
+            background: linear-gradient(180deg, #ff7eb3 0%, #ff758c 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            color: white;
+        }
+
+        .card-left h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .card-left p {
+            line-height: 1.6;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Bên phải: Nội dung thông báo lỗi */
+        .card-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #fff5f5;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .error-title {
+            color: #d9534f;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .error-message {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        /* Nút quay lại login đồng bộ với nút Google Login */
+        .btn-retry {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            background-color: white;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-retry:hover {
+            background-color: #f8f9fa;
+            border-color: #bbb;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        @@media (max-width: 850px) {
+            .login-card {
+                width: 90%;
+                flex-direction: column;
+                height: auto;
+            }
+            .card-left { padding: 30px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="card-left">
+            <h2>Oops!</h2>
+            <p>Đã có lỗi xảy ra trong quá trình xác thực tài khoản Google của bạn. Đừng lo lắng, hãy thử lại lần nữa.</p>
+        </div>
+
+        <div class="card-right">
+            <div class="error-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d9534f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                </svg>
+            </div>
+            
+            <div class="error-title">Đăng nhập thất bại</div>
+            <p class="error-message">Chúng tôi không thể xác thực thông tin từ Google. Vui lòng kiểm tra lại kết nối hoặc tài khoản.</p>
+          
+            <a href="@Url.Action("Index","Login")" class="btn-retry">
+                Thử lại đăng nhập
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

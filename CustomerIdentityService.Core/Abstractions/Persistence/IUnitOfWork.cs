@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace CustomerIdentityService.Core.Abstractions.Persistence
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         IRepository<T> Repository<T>() where T : class;
         Task SaveChangesAsync();
-        Task DisposeAsync();
         void SaveChanges();
     }
 }

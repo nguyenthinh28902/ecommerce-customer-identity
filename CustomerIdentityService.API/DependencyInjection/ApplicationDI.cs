@@ -10,9 +10,9 @@ namespace CustomerIdentityService.API.DependencyInjection
             this IServiceCollection services,
             IConfiguration configuration)
         {
+            
             services.AddApplicationServices(configuration);
-            //automapper
-            services.AddAutoMapperServiceRegistration(configuration);
+           
             return services;
         }
     }

@@ -9,6 +9,6 @@ namespace CustomerIdentityService.Core.Interfaces.Security
 {
     public interface IGoogleAuthService
     {
-        Task<GoogleUserInfoDto?> VerifyGoogleTokenAsync(string idToken);
+        Task<UserInfoSinginDto?> VerifyGoogleTokenAsync(string idToken);
     }
 }

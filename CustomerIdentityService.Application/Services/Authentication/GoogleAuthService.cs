@@ -2,6 +2,7 @@
 using CustomerIdentityService.Core.Interfaces.Security;
 using CustomerIdentityService.Core.Models;
 using Google.Apis.Auth;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace CustomerIdentityService.Application.Services.Authentication
         public GoogleAuthService(IOptions<GoogleWebApiSettings> googleWebApiSettings) {
             _googleWebApiSettings = googleWebApiSettings.Value;
         }
-        public async Task<GoogleUserInfoDto?> VerifyGoogleTokenAsync(string idToken)
+        public async Task<UserInfoSinginDto?> VerifyGoogleTokenAsync(string idToken)
         {
             try
             {
@@ -25,7 +26,7 @@ namespace CustomerIdentityService.Application.Services.Authentication
                 {
                     Audience = new[] { _googleWebApiSettings.client_id }
                 });
-                return new GoogleUserInfoDto(payload.Email, payload.Name, payload.Picture, payload.Subject);
+                return new UserInfoSinginDto(payload.Email, payload.Name, payload.Picture, payload.Subject);
             }
             catch
             {

@@ -13,7 +13,7 @@ namespace CustomerIdentityService.Infrastructure.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly CustomerDbContext dbContext;
-        private Dictionary<Type, object> _repositories;
+        private Dictionary<Type, object> _repositories = new Dictionary<Type, object>();
         public UnitOfWork(CustomerDbContext context)
         {
             dbContext = context;
@@ -34,19 +34,10 @@ namespace CustomerIdentityService.Infrastructure.Repositories
 
             return (Repository<T>)repository;
         }
-        public async Task DisposeAsync()
-        {
-            await dbContext.DisposeAsync();
-        }
-
+       
         public async Task SaveChangesAsync()
         {
             await dbContext.SaveChangesAsync();
-        }
-
-        public void Dispose()
-        {
-            dbContext.Dispose();
         }
 
         public void SaveChanges()
