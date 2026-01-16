@@ -50,7 +50,7 @@ namespace CustomerIdentityService.Application.Services.CustomerServices
 
             return Result<CustomerDto>.Success(newCustomerDto, "Thông tin khách hàng");
         }
-        public async Task<Result<CustomerAuthProvider>> CreateCustomerSingin(UserInfoSinginDto googleUser, string ProviderName)
+        public async Task<Result<CustomerAuthProvider>> CreateCustomerSingin(UserInfoSigninDto googleUser, string ProviderName)
         {
             var provider = await _unitOfWork.Repository<CustomerAuthProvider>().FirstOrDefaultAsync(p => p.Provider == ProviderName
              && p.ProviderUserId == googleUser.ProviderUserId);

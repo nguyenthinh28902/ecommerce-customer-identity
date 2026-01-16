@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace CustomerIdentityService.Core.Dtos.Google
 {
-    public class UserInfoSinginDto
+    public class UserInfoSigninDto
     {
 
         public string ProviderUserId { get; set; }
         public string Name { get; set; }
         public string Picture { get; set; }
         public string Email { get; set; }
-        public UserInfoSinginDto() { }
-        public UserInfoSinginDto(string Email, string Name, string Picture, string ProviderUserId)
+        public UserInfoSigninDto() { }
+        public UserInfoSigninDto(string Email, string Name, string Picture, string ProviderUserId)
         {
             this.Email = Email;
             this.Name = Name;

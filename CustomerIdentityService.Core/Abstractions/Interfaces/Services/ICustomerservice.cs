@@ -14,6 +14,6 @@ namespace CustomerIdentityService.Core.Interfaces.Services
     {
        Task<Result<Customer>> Registration(Customer customer);
         Task<Result<CustomerDto>> GetAuthenticatedCustomer();
-        Task<Result<CustomerAuthProvider>> CreateCustomerSingin(UserInfoSinginDto googleUser, string ProviderName);
+        Task<Result<CustomerAuthProvider>> CreateCustomerSingin(UserInfoSigninDto googleUser, string ProviderName);
     }
 }

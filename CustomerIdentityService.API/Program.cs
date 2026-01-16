@@ -4,6 +4,7 @@ using CustomerIdentityService.Application.Common.Helpers;
 using CustomerIdentityService.Application.DependencyInjection;
 using Serilog;
 using System.Configuration;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +29,8 @@ builder.Host.UseSerilog();
 builder.Services.AddAuthenticationIdentityServer(builder.Configuration);
 builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddJwtAuthentication(builder.Configuration);
-
+// Xóa bản đồ ánh xạ mặc định để giữ nguyên tên "sub" từ Token
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 var app = builder.Build();
 
 

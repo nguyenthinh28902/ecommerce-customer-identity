@@ -82,7 +82,7 @@ namespace CustomerIdentityService.Application.Services.Authentication
             {
                 return string.Empty;
             }
-            var googleUser = new UserInfoSinginDto();
+            var googleUser = new UserInfoSigninDto();
             googleUser.ProviderUserId = resultHttpContext.Principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             googleUser.Email = resultHttpContext.Principal.FindFirst(ClaimTypes.Email)?.Value;
             googleUser.Name = resultHttpContext.Principal.FindFirst(ClaimTypes.Name)?.Value;

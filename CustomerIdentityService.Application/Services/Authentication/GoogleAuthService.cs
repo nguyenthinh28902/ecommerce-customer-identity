@@ -18,7 +18,7 @@ namespace CustomerIdentityService.Application.Services.Authentication
         public GoogleAuthService(IOptions<GoogleWebApiSettings> googleWebApiSettings) {
             _googleWebApiSettings = googleWebApiSettings.Value;
         }
-        public async Task<UserInfoSinginDto?> VerifyGoogleTokenAsync(string idToken)
+        public async Task<UserInfoSigninDto?> VerifyGoogleTokenAsync(string idToken)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace CustomerIdentityService.Application.Services.Authentication
                 {
                     Audience = new[] { _googleWebApiSettings.client_id }
                 });
-                return new UserInfoSinginDto(payload.Email, payload.Name, payload.Picture, payload.Subject);
+                return new UserInfoSigninDto(payload.Email, payload.Name, payload.Picture, payload.Subject);
             }
             catch
             {

@@ -13,18 +13,7 @@ namespace CustomerIdentityService.API.Configurations
     {
         public static IServiceCollection AddAuthenticationIdentityServer(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddIdentityServer(options =>
-            {
-                // Các cấu hình về sự kiện, bảo mật...
-                options.Events.RaiseErrorEvents = true;
-                options.Events.RaiseInformationEvents = true;
-                options.Events.RaiseFailureEvents = true;
-                options.Events.RaiseSuccessEvents = true;
-            })
-            // Cấu hình lưu trữ trong bộ nhớ (để test) hoặc Database (EF Core)
-            .AddInMemoryIdentityResources(Config.IdentityResources)
-            .AddInMemoryApiScopes(Config.ApiScopes)
-            .AddInMemoryClients(Config.Clients);
+           
             return services;
         }
     }

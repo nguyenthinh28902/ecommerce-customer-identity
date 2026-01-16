@@ -24,7 +24,7 @@ namespace CustomerIdentityService.Application.Common.Mappings
             CreateMap<Customer, CustomerDto>();
 
 
-            CreateMap<UserInfoSinginDto, CustomerDto>()
+            CreateMap<UserInfoSigninDto, CustomerDto>()
             .ForMember(
                 dest => dest.Username,
                 opt => opt.MapFrom(src => src.Email)
@@ -41,7 +41,7 @@ namespace CustomerIdentityService.Application.Common.Mappings
                 dest => dest.Email,
                 opt => opt.MapFrom(src => src.Email)
             );
-            CreateMap<UserInfoSinginDto, Customer>()
+            CreateMap<UserInfoSigninDto, Customer>()
           .ForMember(
               dest => dest.Username,
               opt => opt.MapFrom(src => src.Email)
