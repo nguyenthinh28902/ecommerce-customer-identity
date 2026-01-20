@@ -32,7 +32,7 @@ namespace CustomerIdentityService.API.Controllers
         }
 
 
-        [HttpGet("thong-tin-chi-tiet")]
+        [HttpGet("thong-tin")]
         [Authorize]
         public async Task<IActionResult> GetCurrentCustomerInfo()
         {

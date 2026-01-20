@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CustomerIdentityService.Core;
+using CustomerIdentityService.Core.Models.Settings;
 using CustomerIdentityService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,7 +30,7 @@ public partial class CustomerDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseOracle("User Id=CUSTOMER;Password=customer_pwd;Data Source=localhost:1521/FREEPDB1;Persist Security Info=True");
+        => optionsBuilder.UseOracle(ConnectionStrings.CustomerAppLocal);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -2,12 +2,14 @@
 using CustomerIdentityService.API.DependencyInjection;
 using CustomerIdentityService.Application.Common.Helpers;
 using CustomerIdentityService.Application.DependencyInjection;
+using Microsoft.AspNetCore.DataProtection;
 using Serilog;
 using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddEnvironmentVariables();
 //logegr
 
 builder.ConfigureSerilog();
@@ -31,6 +33,15 @@ builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddJwtAuthentication(builder.Configuration);
 // Xóa bản đồ ánh xạ mặc định để giữ nguyên tên "sub" từ Token
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+
+var storagePath = @"/home/app/.aspnet/DataProtection-Keys";
+if (!Directory.Exists(storagePath)) Directory.CreateDirectory(storagePath);
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(storagePath))
+    .SetApplicationName("EcommerceApp");
+
 var app = builder.Build();
 
 
@@ -42,12 +53,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options => options.DisplayRequestDuration());
 }
 
-app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseGlobalException();
 app.MapControllers();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Login}/{action=Index}/{id?}");
+
 app.Run();
