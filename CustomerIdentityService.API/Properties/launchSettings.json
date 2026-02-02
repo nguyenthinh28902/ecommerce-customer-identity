@@ -1,4 +1,13 @@
 {
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:19542",
+      "sslPort": 44325
+    }
+  },
   "profiles": {
     "http": {
       "commandName": "Project",
@@ -8,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5178"
+      "applicationUrl": "http://localhost:5266"
     },
     "https": {
       "commandName": "Project",
@@ -18,7 +27,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7244;http://localhost:5178"
+      "applicationUrl": "https://localhost:7266;http://localhost:5266"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -38,15 +47,6 @@
       },
       "publishAllPorts": true,
       "useSSL": true
-    }
-  },
-  "$schema": "http://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:52725",
-      "sslPort": 44325
     }
   }
 }

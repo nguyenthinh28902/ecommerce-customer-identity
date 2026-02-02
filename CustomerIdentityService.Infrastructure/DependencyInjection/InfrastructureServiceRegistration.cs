@@ -5,11 +5,6 @@ using CustomerIdentityService.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomerIdentityService.Infrastructure.DependencyInjection
 {
@@ -19,7 +14,7 @@ namespace CustomerIdentityService.Infrastructure.DependencyInjection
         {
             ConnectionStrings.CustomerAppLocal = configuration.GetConnectionString("CustomerAppLocal") ?? string.Empty;
             services.AddDbContext<CustomerDbContext>(options =>
-                options.UseOracle(ConnectionStrings.CustomerAppLocal, oracleOptions => { oracleOptions.CommandTimeout(60); }));
+                options.UseSqlServer(ConnectionStrings.CustomerAppLocal, options => { options.CommandTimeout(60); }));
             //add kiến trúc repo and UoW
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
