@@ -13,15 +13,13 @@ namespace CustomerIdentityService.API.Configurations
             //thêm cấu hình Swagger Auth (Bearer JWT)
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new()
-                {
+                c.SwaggerDoc("v1", new() {
                     Title = "Customer Identity API",
                     Version = "v1"
                 });
 
                 // 🔐 JWT Bearer config
-                c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-                {
+                c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme {
                     Name = "Authorization",
                     Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
                     Scheme = "bearer",
@@ -30,13 +28,13 @@ namespace CustomerIdentityService.API.Configurations
                     Description = "Nhập token dạng: Bearer {your JWT token}"
                 });
 
-                
+
                 c.OperationFilter<AllowAnonymousOperationFilter>();
             });
             return services;
         }
-    
-        
+
+
     }
 
     public class AllowAnonymousOperationFilter : IOperationFilter

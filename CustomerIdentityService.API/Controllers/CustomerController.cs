@@ -1,9 +1,8 @@
 ﻿using CustomerIdentityService.Core.Dtos.Customers;
-using CustomerIdentityService.Core.Dtos.Google;
-using CustomerIdentityService.Core.Enums;
 using CustomerIdentityService.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace CustomerIdentityService.API.Controllers
 {
@@ -12,8 +11,12 @@ namespace CustomerIdentityService.API.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerservice _customerservice;
-        public CustomerController(ICustomerservice customerservice) { 
+        private readonly ILogger<CustomerController> _logger;
+        public CustomerController(ICustomerservice customerservice
+            , ILogger<CustomerController> logger)
+        {
             _customerservice = customerservice;
+            _logger = logger;
         }
 
         [HttpPost("xac-nhan-thong-tin-khach-hang")]
@@ -21,19 +24,16 @@ namespace CustomerIdentityService.API.Controllers
         public async Task<IActionResult> ConfirmCustomerInformation([FromBody] ConfirmCustomerDto userInfoSigninDto)
         {
             var result = await _customerservice.CreateCustomerSingin(userInfoSigninDto.Request, userInfoSigninDto.ProviderName);
-            var createCustomerResponse = new CreateCustomerResponse();
+            _logger.LogInformation($"data check: {JsonSerializer.Serialize(result)}");
             if (!result.IsSuccess)
             {
                 return Ok(null);
             }
-            var provider = result.Data;
-            createCustomerResponse.CustomerId = provider.CustomerId;
-            return Ok(createCustomerResponse);
+            return Ok(result);
         }
 
 
         [HttpGet("thong-tin")]
-        [Authorize]
         public async Task<IActionResult> GetCurrentCustomerInfo()
         {
             var data = await _customerservice.GetAuthenticatedCustomer();

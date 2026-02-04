@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CustomerIdentityService.Core.Abstractions.Interfaces.Security
+﻿namespace CustomerIdentityService.Core.Abstractions.Interfaces.Security
 {
     public interface ICurrentUserService
     {
-        int UserId { get; }
+        int CustomerId { get; }
         string? Email { get; }
+        string? PhoneNumber { get; }
     }
 }

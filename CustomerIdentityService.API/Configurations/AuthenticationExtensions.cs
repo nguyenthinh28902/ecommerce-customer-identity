@@ -1,12 +1,5 @@
-﻿using CustomerIdentityService.Core.Enums;
-using CustomerIdentityService.Core.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using CustomerIdentityService.Core.Models;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Security.Claims;
-using System.Text;
 
 namespace CustomerIdentityService.API.Configurations
 {
@@ -17,8 +10,7 @@ namespace CustomerIdentityService.API.Configurations
         {
             services.Configure<JwtSettings>(
               configuration.GetSection("JwtSettings"));
-            services.Configure<GoogleWebApiSettings>(
-              configuration.GetSection("web"));
+
             services.Configure<ExternalProviderOptions>(
                configuration.GetSection("ExternalProviders"));
 
@@ -35,22 +27,28 @@ namespace CustomerIdentityService.API.Configurations
                 .GetSection("JwtSettings")
                 .Get<JwtSettings>()
                 ?? throw new InvalidOperationException("JwtSettings missing");
-            var googleWebApiSettings = configuration
-              .GetSection("web")
-              .Get<GoogleWebApiSettings>()
-              ?? throw new InvalidOperationException("JwtSettings missing");
-            
+
+            var _internalAuthIssuer = configuration["EcommerceApiGateWay:BaseUrl"];
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
                     options.Authority = configuration["EcommerceApiGateWay:BaseUrl"];
-                    options.Audience = "customer.internal";
-                    // Chấp nhận chứng chỉ tự ký từ gateway-service khi kiểm tra token nội bộ
-                    options.BackchannelHttpHandler = new HttpClientHandler
-                    {
-                        ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                    options.RequireHttpsMetadata = false;
+
+                    options.TokenValidationParameters = new TokenValidationParameters {
+                        ValidateIssuer = true,
+                        ValidIssuer = jwtSettings.Issuer,
+
+                        ValidateAudience = true,
+                        ValidAudience = jwtSettings.Audience,
+
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.Zero,
+
+                        ValidateIssuerSigningKey = true,
                     };
                 });
+
 
 
             services.AddAuthorization();

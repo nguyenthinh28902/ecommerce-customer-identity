@@ -1,10 +1,8 @@
 ﻿using CustomerIdentityService.API.Configurations;
 using CustomerIdentityService.API.DependencyInjection;
-using CustomerIdentityService.Application.Common.Helpers;
 using CustomerIdentityService.Application.DependencyInjection;
 using Microsoft.AspNetCore.DataProtection;
 using Serilog;
-using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);

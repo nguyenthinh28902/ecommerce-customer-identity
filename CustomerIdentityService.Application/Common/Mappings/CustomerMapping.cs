@@ -1,12 +1,7 @@
 ﻿using AutoMapper;
-using CustomerIdentityService.Core;
 using CustomerIdentityService.Core.Dtos.Customers;
 using CustomerIdentityService.Core.Dtos.Google;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CustomerIdentityService.Core.Entities;
 
 namespace CustomerIdentityService.Application.Common.Mappings
 {
